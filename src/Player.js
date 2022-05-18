@@ -1,4 +1,4 @@
-export class Deck {
+class Player {
   constructor(test) {
     this.test = test;
   }
@@ -7,3 +7,5 @@ export class Deck {
     console.log(this.test);
   }
 }
+
+export default Player;

@@ -1,0 +1,28 @@
+{
+  "name": "21_card_game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gepoverlow/21-card-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gepoverlow/21-card-game/issues"
+  },
+  "homepage": "https://github.com/Gepoverlow/21-card-game#readme",
+  "devDependencies": {
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "css-loader": "^6.2.0",
+    "style-loader": "^3.2.1"
+  }
+}

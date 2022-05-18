@@ -1,10 +1,10 @@
 class Player {
-  constructor(test) {
-    this.test = test;
+  constructor() {
+    this.currentCards = [];
   }
 
-  log() {
-    console.log(this.test);
+  hit(card) {
+    this.currentCards.push(card);
   }
 }
 

@@ -1,6 +1,11 @@
 class Deck {
   constructor() {
     this.deck = [];
+    this.reset();
+    this.shuffleDeck();
+  }
+  reset() {
+    this.deck = [];
 
     const types = ["Hearts", "Spades", "Clubs", "Diamonds"];
     const values = ["Ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King"];
@@ -25,8 +30,8 @@ class Deck {
     return deck;
   }
 
-  log() {
-    console.log(this.deck);
+  dealCard() {
+    return this.deck.pop();
   }
 }
 

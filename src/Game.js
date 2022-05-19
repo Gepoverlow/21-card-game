@@ -5,19 +5,26 @@ class Game {
   constructor() {}
 
   init() {
-    let deck = new Deck();
-    let player = new Player();
-    let house = new Player();
+    this.deck = new Deck();
+    this.player = new Player();
+    this.house = new Player();
 
-    this.initialDeal(player, deck, house);
+    this.initialDeal();
   }
 
-  initialDeal(player, deck, house) {
-    player.currentCards.push(deck.dealCard());
-    player.currentCards.push(deck.dealCard());
-    house.currentCards.push(deck.dealCard());
-    house.currentCards.push(deck.dealCard());
-    console.log(player.currentCards, house.currentCards);
+  initialDeal() {
+    this.player.currentCards.push(this.deck.dealCard());
+    this.player.currentCards.push(this.deck.dealCard());
+
+    this.house.currentCards.push(this.deck.dealCard());
+    this.house.currentCards.push(this.deck.dealCard());
+
+    console.log(this.player.currentCards);
+    console.log(this.house.currentCards);
+  }
+
+  displayCards(player, house) {
+    const card = document.createElement("span");
   }
 
   turn(player, deck, house) {}

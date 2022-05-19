@@ -11,18 +11,18 @@ html {
 }
 
 #container-all {
-  height: 100vh;
-  display: flex;
+  /* height: 100vh; */
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
 }
 
 #container-house {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50vh;
+  height: 45vh;
   width: 100vw;
   background-color: rgb(137, 177, 137);
 }
@@ -31,11 +31,24 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50vh;
+  height: 45vh;
   width: 100vw;
   background-color: rgb(114, 135, 114);
 }
 
-span {
-  font-size: 100px;
+.card {
+  font-size: clamp(8rem, 15vw, 12rem);
+}
+
+#container-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 10vh;
+  width: 100vw;
+}
+
+.options {
+  font-size: clamp(1rem, 3vw, 2rem);
+  cursor: pointer;
 }

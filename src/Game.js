@@ -13,7 +13,9 @@ class Game {
     this.house = new Player();
 
     this.initialDeal();
-    this.updateCardDisplay(this.player, this.house);
+    this.updatePlayerDisplay();
+    this.updateHouseDisplay();
+    this.checkBlackjack(this.calculateTotalHand(this.player.currentCards));
   }
 
   initialDeal() {
@@ -27,21 +29,70 @@ class Game {
     console.log(this.house.currentCards);
   }
 
-  updateCardDisplay(player, house) {
-    for (let i = 0; i < player.currentCards.length; i++) {
-      const pCard = document.createElement("span");
-      pCard.innerHTML = `${player.currentCards[i].altCode}`;
-      playerContainer.appendChild(pCard);
-    }
+  calculateTotalHand(hand) {
+    return hand.reduce((a, b) => a.value + b.value);
+  }
 
-    for (let i = 0; i < house.currentCards.length; i++) {
+  checkBlackjack(hand) {
+    console.log(`you started the round with ${hand}`);
+
+    if (hand < 21) {
+      console.log("give chance to pick option");
+    } else if (hand === 21) {
+      console.log("Blackjack!");
+    } else if (hand > 21) {
+      console.log("You went too far");
+    }
+  }
+
+  displayOption() {
+    let hitButton = document.createElement("div");
+    hitButton.textContent = "HIT";
+    playerContainer.appendChild(hitButton);
+  }
+
+  updatePlayerDisplay() {
+    this.emptyNode(playerContainer);
+    for (let i = 0; i < this.player.currentCards.length; i++) {
+      const pCard = document.createElement("span");
+      pCard.className = "card";
+      pCard.innerHTML = `${this.player.currentCards[i].altCode}`;
+      playerContainer.appendChild(pCard);
+      console.log(this.player.currentCards);
+    }
+  }
+
+  updateHouseDisplay() {
+    this.emptyNode(houseContainer);
+    for (let i = 0; i < this.house.currentCards.length; i++) {
       const hCard = document.createElement("span");
-      hCard.innerHTML = `${house.currentCards[i].altCode}`;
+      hCard.className = "card";
+      hCard.innerHTML = `${this.house.currentCards[i].altCode}`;
       houseContainer.appendChild(hCard);
     }
   }
 
-  turn(player, deck, house) {}
+  // updateCardDisplay(player, house) {
+  //   for (let i = 0; i < player.currentCards.length; i++) {
+  //     const pCard = document.createElement("span");
+  //     pCard.className = "card";
+  //     pCard.innerHTML = `${player.currentCards[i].altCode}`;
+  //     playerContainer.appendChild(pCard);
+  //   }
+
+  //   for (let i = 0; i < house.currentCards.length; i++) {
+  //     const hCard = document.createElement("span");
+  //     hCard.className = "card";
+  //     hCard.innerHTML = `${house.currentCards[i].altCode}`;
+  //     houseContainer.appendChild(hCard);
+  //   }
+  // }
+
+  emptyNode(parent) {
+    while (parent.firstChild) {
+      parent.firstChild.remove();
+    }
+  }
 }
 
 export default Game;

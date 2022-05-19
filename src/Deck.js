@@ -29,18 +29,16 @@ class Deck {
     for (let type in types) {
       for (let value in values) {
         //Because of italian and spanish "Knight" card, I had to include a null element within the values array to skip it when looping over and displaying the correct baseAle value
-        if (value === null) {
-          baseAlt++;
-          continue;
+        if (values[value] !== null) {
+          let cardName = `${values[value]} of ${types[type]}`;
+          let card = this.cardToObject(
+            cardName,
+            this.assignCardValue(cardName),
+            `&#${baseAlt}`
+          );
+          this.deck.push(card);
         }
-        let cardName = `${values[value]} of ${types[type]}`;
-        let card = this.cardToObject(
-          cardName,
-          this.assignCardValue(cardName),
-          `&#${baseAlt}`
-        );
         baseAlt++;
-        this.deck.push(card);
       }
       baseAlt += 2;
     }

@@ -1,6 +1,9 @@
 import Deck from "./Deck";
 import Player from "./Player";
 
+const houseContainer = document.getElementById("container-house");
+const playerContainer = document.getElementById("container-player");
+
 class Game {
   constructor() {}
 
@@ -10,6 +13,7 @@ class Game {
     this.house = new Player();
 
     this.initialDeal();
+    this.updateCardDisplay(this.player, this.house);
   }
 
   initialDeal() {
@@ -23,8 +27,18 @@ class Game {
     console.log(this.house.currentCards);
   }
 
-  displayCards(player, house) {
-    const card = document.createElement("span");
+  updateCardDisplay(player, house) {
+    for (let i = 0; i < player.currentCards.length; i++) {
+      const pCard = document.createElement("span");
+      pCard.innerHTML = `${player.currentCards[i].altCode}`;
+      playerContainer.appendChild(pCard);
+    }
+
+    for (let i = 0; i < house.currentCards.length; i++) {
+      const hCard = document.createElement("span");
+      hCard.innerHTML = `${house.currentCards[i].altCode}`;
+      houseContainer.appendChild(hCard);
+    }
   }
 
   turn(player, deck, house) {}

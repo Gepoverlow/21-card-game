@@ -8,11 +8,31 @@ class Deck {
     this.deck = [];
 
     const types = ["Spades", "Hearts", "Diamonds", "Clubs"];
-    const values = ["Ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King"];
+    const values = [
+      "Ace",
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      "Jack",
+      null,
+      "Queen",
+      "King",
+    ];
     let baseAlt = 127137;
 
     for (let type in types) {
       for (let value in values) {
+        //Because of italian and spanish "Knight" card, I had to include a null element within the values array to skip it when looping over and displaying the correct baseAle value
+        if (value === null) {
+          baseAlt++;
+          continue;
+        }
         let cardName = `${values[value]} of ${types[type]}`;
         let card = this.cardToObject(
           cardName,
@@ -24,8 +44,6 @@ class Deck {
       }
       baseAlt += 2;
     }
-
-    console.log(this.deck);
   }
 
   cardToObject(name, value, altCode) {

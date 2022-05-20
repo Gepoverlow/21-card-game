@@ -16,13 +16,12 @@ class Game {
     this.house = new Player();
 
     this.gameOver = false;
-    this.gameStatus = undefined;
 
     this.initialDeal();
     this.updatePlayerDisplay();
     this.updateHouseDisplay();
+    // this.updateScores();
     this.checkBlackjack(this.calculateTotalHand(this.player.currentCards));
-    this.updateScores();
   }
 
   initialDeal() {
@@ -103,29 +102,40 @@ class Game {
     const houseScore = this.calculateTotalHand(this.house.currentCards);
     const playerScore = this.calculateTotalHand(this.player.currentCards);
 
-    if (playerScore > houseScore) {
-      gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. You Win!`;
-    } else if (houseScore > playerScore) {
-      gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. House Wins`;
+    if (houseScore < 17) {
+      this.house.hit(this.deck.dealCard());
+      this.updateHouseDisplay();
+      this.compareFinalScore();
+      this.showLastHouseCard();
     } else {
-      gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. Its a Tie`;
-    }
+      if (playerScore > houseScore && playerScore <= 21) {
+        gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. You Win!`;
+      } else if (playerScore > houseScore && playerScore > 21) {
+        gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. You Loose`;
+      } else if (houseScore > playerScore && houseScore <= 21) {
+        gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. House Wins`;
+      } else if (houseScore > playerScore && houseScore > 21) {
+        gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. House Looses`;
+      } else if (houseScore === playerScore) {
+        gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. Its a Tie`;
+      }
 
-    this.gameOver = true;
+      this.gameOver = true;
+      this.showLastHouseCard();
+    }
   }
 
   updateScores(state) {
+    console.log(state);
     playerScore.textContent = `Player Score = ${this.calculateTotalHand(
       this.player.currentCards
     )}`;
     if (state === "alive") {
-      gameState.textContent = `Game is still going...`;
+      gameState.textContent = `Are you going to Hit or Stand?`;
     } else if (state === "blackjack") {
       gameState.textContent = `Blackjack!`;
     } else if (state === "over") {
       gameState.textContent = `Went too high... Game Over`;
-    } else if (state === undefined) {
-      gameState.textContent = `Do you Hit or Stand?`;
     }
   }
 

@@ -8,6 +8,7 @@ body,
 html {
   width: 100vw;
   min-height: 100vh;
+  font-family: "Josefin Sans", sans-serif;
 }
 
 #container-all {
@@ -39,7 +40,7 @@ html {
 .playerCard,
 .houseCard {
   position: relative;
-  font-size: clamp(8rem, 15vw, 12rem);
+  font-size: clamp(8rem, 9vw, 10rem);
 }
 
 #container-info {
@@ -48,8 +49,9 @@ html {
   align-items: center;
   height: 5vh;
   width: 100vw;
-
+  padding: 5px;
   gap: 3em;
+  font-size: clamp(0.5rem, 1.5vw, 1rem);
 }
 
 #container-options {
@@ -60,6 +62,11 @@ html {
   width: 100vw;
 }
 
+#container-info,
+#container-options {
+  background-color: burlywood;
+}
+
 .options {
   font-size: clamp(0.5rem, 1.5vw, 1rem);
   cursor: pointer;
@@ -68,7 +75,7 @@ html {
 .hiddenCard {
   position: absolute;
   background-image: url("./card-back.jpg");
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   object-fit: fill;
 
@@ -77,11 +84,13 @@ html {
   right: 0;
   bottom: 0;
   left: 0;
-  margin-top: auto;
-  margin-bottom: 20%;
+  margin-top: 9%;
+  margin-bottom: auto;
+
   margin-right: auto;
-  margin-left: 9%;
+  margin-left: auto;
+
   width: 90%;
-  height: 70%;
+  height: 80%;
   z-index: 1;
 }

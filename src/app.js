@@ -1,6 +1,4 @@
 import Game from "./Game.js";
-import Deck from "./Deck.js";
-import Player from "./Player.js";
 
 let game = new Game();
 game.init();
@@ -23,9 +21,6 @@ hitButton.addEventListener("click", () => {
 
 standButton.addEventListener("click", () => {
   if (game.gameOver !== true) {
-    game.showLastHouseCard();
-    game.compareFinalScore();
-    // game.checkBlackjack(game.calculateTotalHand(game.house.currentCards));
     game.compareFinalScore();
   }
 });

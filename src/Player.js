@@ -1,5 +1,6 @@
 class Player {
-  constructor() {
+  constructor(credits) {
+    this.credits = credits;
     this.currentCards = [];
   }
 

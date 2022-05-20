@@ -6,22 +6,33 @@ const playerContainer = document.getElementById("container-player");
 
 const playerScore = document.getElementById("info-player-score");
 const gameState = document.getElementById("info-game-state");
+const playerCredits = document.getElementById("info-player-credits");
 
 class Game {
-  constructor() {}
+  constructor() {
+    this.isInitialized = false;
+    this.player = new Player(10000);
+    this.house = new Player();
+    this.currentBet = 0;
+  }
 
   init() {
     this.deck = new Deck();
-    this.player = new Player();
-    this.house = new Player();
+
+    this.player.currentCards = [];
+    this.house.currentCards = [];
 
     this.gameOver = false;
+    this.isInitialized = true;
+    this.currentBet = 0;
 
     this.initialDeal();
     this.updatePlayerDisplay();
     this.updateHouseDisplay();
     // this.updateScores();
     this.checkBlackjack(this.calculateTotalHand(this.player.currentCards));
+
+    this.updatePlayerCredits();
   }
 
   initialDeal() {
@@ -126,7 +137,6 @@ class Game {
   }
 
   updateScores(state) {
-    console.log(state);
     playerScore.textContent = `Player Score = ${this.calculateTotalHand(
       this.player.currentCards
     )}`;
@@ -137,6 +147,17 @@ class Game {
     } else if (state === "over") {
       gameState.textContent = `Went too high... Game Over`;
     }
+  }
+
+  updatePlayerCredits() {
+    playerCredits.textContent = `Player Credits: ${this.player.credits}`;
+  }
+
+  placeBet(amount) {
+    this.betAmount = amount;
+    this.player.credits -= amount;
+    this.currentBet += amount;
+    this.updatePlayerCredits();
   }
 
   emptyNode(parent) {

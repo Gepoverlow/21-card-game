@@ -6,6 +6,7 @@ const playerContainer = document.getElementById("container-player");
 
 const playerScore = document.getElementById("info-player-score");
 const gameState = document.getElementById("info-game-state");
+const currentBet = document.getElementById("info-game-current-bet");
 const playerCredits = document.getElementById("info-player-credits");
 
 class Game {
@@ -24,7 +25,8 @@ class Game {
 
     this.gameOver = false;
     this.isInitialized = true;
-    this.currentBet = 0;
+    // this.currentBet = 0;
+    this.isBetPlaced = false;
 
     this.initialDeal();
     this.updatePlayerDisplay();
@@ -121,14 +123,19 @@ class Game {
     } else {
       if (playerScore > houseScore && playerScore <= 21) {
         gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. You Win!`;
+        this.winRound();
       } else if (playerScore > houseScore && playerScore > 21) {
-        gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. Hous Wins`;
+        gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. House Wins`;
+        this.looseRound();
       } else if (houseScore > playerScore && houseScore <= 21) {
         gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. House Wins`;
+        this.looseRound();
       } else if (houseScore > playerScore && houseScore > 21) {
         gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. Player Wins!`;
+        this.winRound();
       } else if (houseScore === playerScore) {
         gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. Its a Tie`;
+        this.tieRound();
       }
 
       this.gameOver = true;
@@ -144,19 +151,43 @@ class Game {
       gameState.textContent = `Are you going to Hit or Stand?`;
     } else if (state === "blackjack") {
       gameState.textContent = `Blackjack!`;
+      this.winRound();
     } else if (state === "over") {
       gameState.textContent = `Went too high... Game Over`;
+      this.looseRound();
     }
   }
 
   updatePlayerCredits() {
     playerCredits.textContent = `Player Credits: ${this.player.credits}`;
+    currentBet.textContent = `Current Bet: ${this.currentBet}`;
   }
 
   placeBet(amount) {
-    this.betAmount = amount;
-    this.player.credits -= amount;
-    this.currentBet += amount;
+    if (this.isBetPlaced !== true) {
+      this.betAmount = amount;
+      this.player.credits -= amount;
+      this.currentBet += amount;
+      this.updatePlayerCredits();
+
+      this.isBetPlaced = true;
+    }
+  }
+
+  winRound() {
+    this.player.credits += this.currentBet * 2;
+    this.currentBet = 0;
+    this.updatePlayerCredits();
+  }
+
+  looseRound() {
+    this.currentBet = 0;
+    this.updatePlayerCredits();
+  }
+
+  tieRound() {
+    this.player.credits += this.currentBet;
+    this.currentBet = 0;
     this.updatePlayerCredits();
   }
 

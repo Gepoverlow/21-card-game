@@ -2,7 +2,7 @@ import Game from "./Game.js";
 
 const game = new Game();
 
-const restartButton = document.getElementById("option-restart");
+const startButton = document.getElementById("option-start");
 const hitButton = document.getElementById("option-hit");
 const standButton = document.getElementById("option-stand");
 
@@ -10,23 +10,28 @@ const placeBetOne = document.getElementById("option-bet-one");
 const placeBetTwo = document.getElementById("option-bet-two");
 const placeBetThree = document.getElementById("option-bet-three");
 
-restartButton.addEventListener("click", () => {
-  game.init();
+startButton.addEventListener("click", () => {
+  if (game.isBetPlaced === true) {
+    game.init();
+  }
 });
 
 placeBetOne.addEventListener("click", () => {
-  game.placeBet(1000);
-  console.log(game.currentBet);
+  if (game.player.credits >= 1000) {
+    game.placeBet(1000);
+  }
 });
 
 placeBetTwo.addEventListener("click", () => {
-  game.placeBet(2000);
-  console.log(game.currentBet);
+  if (game.player.credits >= 2000) {
+    game.placeBet(2000);
+  }
 });
 
 placeBetThree.addEventListener("click", () => {
-  game.placeBet(3000);
-  console.log(game.currentBet);
+  if (game.player.credits >= 3000) {
+    game.placeBet(3000);
+  }
 });
 
 hitButton.addEventListener("click", () => {

@@ -20,3 +20,12 @@ hitButton.addEventListener("click", () => {
     game.checkBlackjack(game.calculateTotalHand(game.player.currentCards));
   }
 });
+
+standButton.addEventListener("click", () => {
+  if (game.gameOver !== true) {
+    game.showLastHouseCard();
+    game.compareFinalScore();
+    // game.checkBlackjack(game.calculateTotalHand(game.house.currentCards));
+    game.compareFinalScore();
+  }
+});

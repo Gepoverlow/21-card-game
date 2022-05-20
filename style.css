@@ -36,7 +36,9 @@ html {
   background-color: rgb(114, 135, 114);
 }
 
-.card {
+.playerCard,
+.houseCard {
+  position: relative;
   font-size: clamp(8rem, 15vw, 12rem);
 }
 
@@ -51,4 +53,19 @@ html {
 .options {
   font-size: clamp(1rem, 3vw, 2rem);
   cursor: pointer;
+}
+
+.hiddenCard {
+  position: absolute;
+  background-color: rgb(204, 81, 81);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: auto;
+  margin-bottom: 20%;
+  margin-right: auto;
+  margin-left: auto;
+  width: 90%;
+  height: 70%;
 }

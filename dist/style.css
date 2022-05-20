@@ -94,3 +94,13 @@ html {
   height: 80%;
   z-index: 1;
 }
+
+.focus {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}

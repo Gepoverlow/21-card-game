@@ -42,16 +42,26 @@ html {
   font-size: clamp(8rem, 15vw, 12rem);
 }
 
+#container-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+  width: 100vw;
+
+  gap: 3em;
+}
+
 #container-options {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  height: 10vh;
+  height: 5vh;
   width: 100vw;
 }
 
 .options {
-  font-size: clamp(1rem, 3vw, 2rem);
+  font-size: clamp(0.5rem, 1.5vw, 1rem);
   cursor: pointer;
 }
 

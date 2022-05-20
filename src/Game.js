@@ -60,7 +60,7 @@ class Game {
     this.emptyNode(playerContainer);
     for (let i = 0; i < this.player.currentCards.length; i++) {
       const pCard = document.createElement("span");
-      pCard.className = "card";
+      pCard.className = "playerCard";
       pCard.innerHTML = `${this.player.currentCards[i].altCode}`;
       playerContainer.appendChild(pCard);
     }
@@ -70,27 +70,22 @@ class Game {
     this.emptyNode(houseContainer);
     for (let i = 0; i < this.house.currentCards.length; i++) {
       const hCard = document.createElement("span");
-      hCard.className = "card";
+      hCard.className = "houseCard";
       hCard.innerHTML = `${this.house.currentCards[i].altCode}`;
       houseContainer.appendChild(hCard);
     }
+    this.hideLastHouseCard();
   }
 
-  // updateCardDisplay(player, house) {
-  //   for (let i = 0; i < player.currentCards.length; i++) {
-  //     const pCard = document.createElement("span");
-  //     pCard.className = "card";
-  //     pCard.innerHTML = `${player.currentCards[i].altCode}`;
-  //     playerContainer.appendChild(pCard);
-  //   }
+  hideLastHouseCard() {
+    const allHouseCards = document.querySelectorAll(".houseCard");
+    const lastCard = allHouseCards[allHouseCards.length - 1];
 
-  //   for (let i = 0; i < house.currentCards.length; i++) {
-  //     const hCard = document.createElement("span");
-  //     hCard.className = "card";
-  //     hCard.innerHTML = `${house.currentCards[i].altCode}`;
-  //     houseContainer.appendChild(hCard);
-  //   }
-  // }
+    const wrapper = document.createElement("div");
+    lastCard.appendChild(wrapper);
+
+    wrapper.classList.add("hiddenCard");
+  }
 
   emptyNode(parent) {
     while (parent.firstChild) {

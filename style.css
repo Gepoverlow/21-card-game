@@ -57,7 +57,12 @@ html {
 
 .hiddenCard {
   position: absolute;
-  background-color: rgb(204, 81, 81);
+  background-image: url("./card-back.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  object-fit: fill;
+
+  border-radius: 5px;
   top: 0;
   right: 0;
   bottom: 0;
@@ -65,7 +70,8 @@ html {
   margin-top: auto;
   margin-bottom: 20%;
   margin-right: auto;
-  margin-left: auto;
+  margin-left: 9%;
   width: 90%;
   height: 70%;
+  z-index: 1;
 }

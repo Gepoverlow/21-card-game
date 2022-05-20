@@ -178,11 +178,13 @@ class Game {
     this.player.credits += this.currentBet * 2;
     this.currentBet = 0;
     this.updatePlayerCredits();
+    this.isInitialized = false;
   }
 
   looseRound() {
     this.currentBet = 0;
     this.updatePlayerCredits();
+    this.isInitialized = false;
   }
 
   tieRound() {

@@ -30,6 +30,7 @@ const addMovesFocus = () => {
 };
 
 startButton.addEventListener("click", () => {
+  console.log(`starting..... init is ${game.isInitialized}`);
   if (game.isBetPlaced === true) {
     game.init();
     startButton.classList.remove("focus");
@@ -38,7 +39,8 @@ startButton.addEventListener("click", () => {
 });
 
 placeBetOne.addEventListener("click", () => {
-  if (game.player.credits >= 1000) {
+  console.log(`betting..... init is ${game.isInitialized}`);
+  if (game.player.credits >= 1000 && game.isInitialized !== true) {
     game.placeBet(1000);
     removeBetsFocus();
     startButton.classList.add("focus");
@@ -46,7 +48,7 @@ placeBetOne.addEventListener("click", () => {
 });
 
 placeBetTwo.addEventListener("click", () => {
-  if (game.player.credits >= 2000) {
+  if (game.player.credits >= 2000 && game.isInitialized !== true) {
     game.placeBet(2000);
     removeBetsFocus();
     startButton.classList.add("focus");
@@ -54,7 +56,7 @@ placeBetTwo.addEventListener("click", () => {
 });
 
 placeBetThree.addEventListener("click", () => {
-  if (game.player.credits >= 3000) {
+  if (game.player.credits >= 3000 && game.isInitialized !== true) {
     game.placeBet(3000);
     removeBetsFocus();
     startButton.classList.add("focus");
@@ -68,18 +70,19 @@ hitButton.addEventListener("click", () => {
     game.checkBlackjack(game.calculateTotalHand(game.player.currentCards));
   }
 
-  if (game.gameOver === true) {
+  if (game.gameOver === true && game.isInitialized === false) {
     removeMovesFocus();
     addBetsFocus();
   }
 });
 
 standButton.addEventListener("click", () => {
+  console.log(`standing..... init is ${game.isInitialized}`);
   if (game.gameOver !== true && game.isInitialized !== false) {
     game.compareFinalScore();
   }
 
-  if (game.gameOver === true) {
+  if (game.gameOver === true && game.isInitialized !== true) {
     removeMovesFocus();
     addBetsFocus();
   }

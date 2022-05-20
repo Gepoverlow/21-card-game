@@ -30,7 +30,6 @@ const addMovesFocus = () => {
 };
 
 startButton.addEventListener("click", () => {
-  console.log(`starting..... init is ${game.isInitialized}`);
   if (game.isBetPlaced === true) {
     game.init();
     startButton.classList.remove("focus");
@@ -39,7 +38,6 @@ startButton.addEventListener("click", () => {
 });
 
 placeBetOne.addEventListener("click", () => {
-  console.log(`betting..... init is ${game.isInitialized}`);
   if (game.player.credits >= 1000 && game.isInitialized !== true) {
     game.placeBet(1000);
     removeBetsFocus();
@@ -70,19 +68,18 @@ hitButton.addEventListener("click", () => {
     game.checkBlackjack(game.calculateTotalHand(game.player.currentCards));
   }
 
-  if (game.gameOver === true && game.isInitialized === false) {
+  if (game.gameOver === true && game.isBetPlaced === false) {
     removeMovesFocus();
     addBetsFocus();
   }
 });
 
 standButton.addEventListener("click", () => {
-  console.log(`standing..... init is ${game.isInitialized}`);
   if (game.gameOver !== true && game.isInitialized !== false) {
     game.compareFinalScore();
   }
 
-  if (game.gameOver === true && game.isInitialized !== true) {
+  if (game.gameOver === true && game.isBetPlaced === false) {
     removeMovesFocus();
     addBetsFocus();
   }

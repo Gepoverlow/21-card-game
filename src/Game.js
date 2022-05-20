@@ -25,13 +25,11 @@ class Game {
 
     this.gameOver = false;
     this.isInitialized = true;
-    // this.currentBet = 0;
     this.isBetPlaced = false;
 
     this.initialDeal();
     this.updatePlayerDisplay();
     this.updateHouseDisplay();
-    // this.updateScores();
     this.checkBlackjack(this.calculateTotalHand(this.player.currentCards));
 
     this.updatePlayerCredits();
@@ -191,6 +189,7 @@ class Game {
     this.player.credits += this.currentBet;
     this.currentBet = 0;
     this.updatePlayerCredits();
+    this.isInitialized = false;
   }
 
   emptyNode(parent) {

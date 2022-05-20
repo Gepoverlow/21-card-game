@@ -14,7 +14,9 @@ restartButton.addEventListener("click", () => {
 });
 
 hitButton.addEventListener("click", () => {
-  game.player.hit(game.deck.dealCard());
-  game.updatePlayerDisplay();
-  console.log(game.deck.deck);
+  if (game.gameOver !== true) {
+    game.player.hit(game.deck.dealCard());
+    game.updatePlayerDisplay();
+    game.checkBlackjack(game.calculateTotalHand(game.player.currentCards));
+  }
 });

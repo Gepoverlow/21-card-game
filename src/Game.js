@@ -12,6 +12,8 @@ class Game {
     this.player = new Player();
     this.house = new Player();
 
+    this.gameOver = false;
+
     this.initialDeal();
     this.updatePlayerDisplay();
     this.updateHouseDisplay();
@@ -24,24 +26,27 @@ class Game {
 
     this.house.currentCards.push(this.deck.dealCard());
     this.house.currentCards.push(this.deck.dealCard());
-
-    console.log(this.player.currentCards);
-    console.log(this.house.currentCards);
   }
 
   calculateTotalHand(hand) {
-    return hand.reduce((a, b) => a.value + b.value);
+    const totalSum = hand.reduce((accumulator, object) => {
+      return accumulator + object.value;
+    }, 0);
+    return totalSum;
   }
 
   checkBlackjack(hand) {
-    console.log(`you started the round with ${hand}`);
+    console.log(`Your current total is ${hand}`);
 
     if (hand < 21) {
       console.log("give chance to pick option");
+      this.gameOver = false;
     } else if (hand === 21) {
       console.log("Blackjack!");
+      this.gameOver = true;
     } else if (hand > 21) {
       console.log("You went too far");
+      this.gameOver = true;
     }
   }
 
@@ -58,7 +63,6 @@ class Game {
       pCard.className = "card";
       pCard.innerHTML = `${this.player.currentCards[i].altCode}`;
       playerContainer.appendChild(pCard);
-      console.log(this.player.currentCards);
     }
   }
 

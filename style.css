@@ -23,7 +23,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 45vh;
+  height: 40vh;
   width: 100vw;
   background-color: rgb(137, 177, 137);
 }
@@ -32,7 +32,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 45vh;
+  height: 40vh;
   width: 100vw;
   background-color: rgb(114, 135, 114);
 }
@@ -47,7 +47,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 5vh;
+  height: 10vh;
   width: 100vw;
   padding: 5px;
   gap: 3em;
@@ -58,7 +58,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  height: 5vh;
+  height: 10vh;
   width: 100vw;
 }
 

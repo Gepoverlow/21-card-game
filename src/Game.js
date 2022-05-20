@@ -95,7 +95,7 @@ class Game {
     const firstCard = allHouseCards[0];
     const wrapper = document.querySelector(".hiddenCard");
 
-    firstCard.removeChild(wrapper);
+    if (wrapper !== null) firstCard.removeChild(wrapper);
   }
 
   compareFinalScore() {
@@ -111,11 +111,11 @@ class Game {
       if (playerScore > houseScore && playerScore <= 21) {
         gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. You Win!`;
       } else if (playerScore > houseScore && playerScore > 21) {
-        gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. You Loose`;
+        gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. Hous Wins`;
       } else if (houseScore > playerScore && houseScore <= 21) {
         gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. House Wins`;
       } else if (houseScore > playerScore && houseScore > 21) {
-        gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. House Looses`;
+        gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. Player Wins!`;
       } else if (houseScore === playerScore) {
         gameState.textContent = `The house rolled ${houseScore} and you ${playerScore}. Its a Tie`;
       }

@@ -74,12 +74,6 @@ class Game {
     this.updateScores(this.gameStatus);
   }
 
-  displayOption() {
-    let hitButton = document.createElement("div");
-    hitButton.textContent = "HIT";
-    playerContainer.appendChild(hitButton);
-  }
-
   updatePlayerDisplay() {
     this.emptyNode(playerContainer);
     for (let i = 0; i < this.player.currentCards.length; i++) {

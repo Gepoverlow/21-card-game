@@ -44,10 +44,20 @@ class Game {
   }
 
   calculateTotalHand(hand) {
-    const totalSum = hand.reduce((accumulator, object) => {
-      return accumulator + object.value;
+    let totalSum = hand.reduce((accumulator, object) => {
+      let current = accumulator + object.value;
+
+      return current;
     }, 0);
+    if (this.acesInPlay(hand) > 0 && totalSum > 21) {
+      totalSum -= 10;
+    }
     return totalSum;
+  }
+
+  acesInPlay(hand) {
+    const acesPlaying = hand.filter((card) => card.name[0] === "A");
+    return acesPlaying.length;
   }
 
   checkBlackjack(hand) {

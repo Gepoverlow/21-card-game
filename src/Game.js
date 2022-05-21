@@ -161,7 +161,7 @@ class Game {
       gameState.textContent = `Blackjack!`;
       this.winRound();
     } else if (state === "over") {
-      gameState.textContent = `Went too high... Game Over`;
+      gameState.textContent = `Went too high... House Wins`;
       this.looseRound();
     }
   }

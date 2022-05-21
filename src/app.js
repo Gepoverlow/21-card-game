@@ -30,8 +30,8 @@ const addMovesFocus = () => {
 };
 
 startButton.addEventListener("click", () => {
-  game.init(); //
   if (game.isBetPlaced === true) {
+    game.init();
     startButton.classList.remove("focus");
     addMovesFocus();
   }
